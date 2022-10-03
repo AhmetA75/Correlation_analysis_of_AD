@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Calling libraries
+data= pd.read_excel('Temporary_data3_-_Copy.xlsx')
+pd.set_option("display.max_columns",None)
+pd.set_option("display.max_row",None)
+pd.set_option("display.width",None)
+data
+# Extracting data file from excel 
+pd.DataFrame(data["CDRGLOB"])
+# CDRGLOB seperated  values
+data.corr()
+#Correlation between big data set
+data2=pd.DataFrame((data['CDRGLOB'],data['APA'],data['INDEPEND'],data['HIPPOVOL'], data["NACCMMSE"],data["TEMPCOR"],data["RENTM"],data["RPARHIPM"]))
+data2
+#High Correlation values with CDRGLOB
+Formula = (data["APA"] + data["HIPPOVOL"]) + (data["INDEPEND"] * data["NACCMMSE"] / data["TEMPCOR"] + data["RENTM"] + data["RPARHIPM"])
+# Calculation of Formula
+DFx = 'Formula'
+DFy = data["CDRGLOB"] 
+DFa = data["HIPPOVOL"]
+DFb = data["APA"]
+DFc = data["INDEPEND"]
+DFd = data["NACCMMSE"]
+DFe = data["TEMPCOR"]
+DFg = data["RENTM"]
+DFh = data["RPARHIPM"]
+plt.hist(DFh, alpha=0.5)
+plt.hist(DFg, alpha=0.5)
+plt.hist(DFe, alpha=0.5)
+plt.hist(DFd, alpha=0.5)
+plt.hist(DFc, alpha=0.5)
+plt.hist(DFb, alpha=0.5)
+plt.hist(DFa, alpha=0.5)
+plt.hist(DFx, alpha=0.5)
+plt.hist(DFy, alpha=0.5);
+# Formula compared to higih corr values
+df1 = 'Formula'
+df2 = data["CDRGLOB"] 
+plt.hist(df1,alpha = 0.8)
+plt.hist(df2,alpha=0.8)
+plt.show()
+# Relevance between Formula and CDRGLOB
